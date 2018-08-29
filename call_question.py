@@ -18,12 +18,14 @@ def callquestion(label_dict):
     train_question = {}
     train_answer = {}
     for video_id in tqdm(sorted(label_dict)):
+#    video_id = 'video102'
         print("Now Processing " + video_id)
         train_question[video_id] = []
         train_answer[video_id] = []
         except_ls = []
         for idx, label_sentence in enumerate(train_label[video_id]):
             process.stdin.write((label_sentence+'\n').encode())
+#            print(label_sentence)
             process.stdin.flush()
             out_q = []
             out_a = []
@@ -44,8 +46,9 @@ def callquestion(label_dict):
         #reprocess the exception
         for except_idx in except_ls:
             input_sentence = train_label[video_id][except_idx]
-            input_sentence_ls = input_sentence.split(' ')
             
+            
+            input_sentence_ls = input_sentence.split(' ')
             #case 1: there is/ there are...
             if input_sentence_ls[0] == 'there':
                 if input_sentence_ls[1] == 'is':
@@ -58,7 +61,6 @@ def callquestion(label_dict):
                     input_sentence_ls[1].replace('are', 'there')
                     train_question[video_id][except_idx] = [' '.join(input_sentence_ls)]
                     train_answer[video_id][except_idx] = ['yes']
-            
             #case 2: "ing" exsits in verb
             else:
                 resend = False
@@ -110,15 +112,11 @@ def load_caption(label_path):
         
 train_label_path = './MSRVTT/training_label.json'
 test_label_path = './MSRVTT/testing_label.json'
-#%%
 if __name__ == "__main__":
-    #training set
     train_label = load_caption(train_label_path)
     train_question, train_answer = callquestion(train_label)
     ib.dump(train_question, './train_question.pkl')
     ib.dump(train_answer, './train_answer.pkl')
-    
-    #testing set
     test_label = load_caption(test_label_path)
     test_question, test_answer = callquestion(test_label)
     ib.dump(test_question, './test_question.pkl')
