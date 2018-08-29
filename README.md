@@ -1,5 +1,5 @@
 # Question Generation in NLP
-It's a modified code ***[from Michael Heilman](http://www.cs.cmu.edu/~ark/mheilman/questions/)***. The system use NLP to generate question-answer pairs from given sentences. The main function in ```call_question.py``` usualize the Question Generaton system to generate QA-pair for [***MSR-VTT***](http://ms-multimedia-challenge.com/dataset) and save them as ```.json```. 
+It's a modified code from [*** Michael Heilman***](http://www.cs.cmu.edu/~ark/mheilman/questions/). The system use NLP to generate question-answer pairs from given sentences. The main function in ```call_question.py``` usualize the Question Generaton system to generate QA-pair for [***MSR-VTT***](http://ms-multimedia-challenge.com/dataset) and save them as ```.json```. 
 
 
 ## Requirement
