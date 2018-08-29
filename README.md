@@ -3,12 +3,11 @@ It's a modified code ***[from Michael Heilman](http://www.cs.cmu.edu/~ark/mheilm
 
 
 ## Requirement
-- Java, follow the [official installation](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
+- Java 1.8, follow the [official installation](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 - python 2.7
 - MSR-VTT label
 
 ## Usage 
-
 You can simply run the question generation part by:
 ```
 bash run.sh
@@ -17,7 +16,25 @@ If you want to apply it on MSR-VTT dataset, please run the following:
 ```
 python call_question.py
 ```
+To load ```train_question.pkl``` and ```train_answer.pkl``` , please do the following:
+```python
+import joblib as ib #(version: 0.10.3)
+train_question = ib.load('./train_question.pkl')
+```
+train_question and train_answer is a dictionary use str 'video{id}' as key and List[List[str]] as value.
 
+## Result
+For question generation:
+```
+Input: The man introduces his two dogs.
+Questions: 
+ [u'Who introduces his two dogs',
+  u'How many his dogs does man introduce',
+  u'What does man introduce',
+  u'Does man introduce his two dogs']
+Answers:
+[u'man', u'his two dogs', u'his two dogs', u'yes']
+```
 
 ## Note
 We not only usualize QG system to generate QA pairs, but also deal with exception. Please see the line 46 - 86 for more detail.
