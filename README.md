@@ -8,11 +8,21 @@ It's a modified code from [***Michael Heilman***](http://www.cs.cmu.edu/~ark/mhe
 - MSR-VTT label
 
 ## Usage 
-You can simply run the question generation part by:
+1. You can simply run the question generation part by:
 ```
 bash run.sh
 ```
-If you want to apply it on MSR-VTT dataset, please run the following:
+or you might want to usualize the question generatior as an API and apply on personal work. You could use the ```call_function()``` in ```call_function.py``` as shown in the following:
+```python
+command = ['bash', 'run.sh']
+process = Popen(command, bufsize = 1, stdin = PIPE, stdout = PIPE)
+while True:
+    input_sentence = raw_input("Input sentence:")
+    if input_sentence == 'q':
+        break
+    call_function(input_sentence)
+```
+2. If you want to apply it on MSR-VTT dataset, please run the following:
 ```
 python call_question.py
 ```
