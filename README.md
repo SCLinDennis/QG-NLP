@@ -47,7 +47,8 @@ Answers:
 ```
 
 ## Note
-We not only usualize QG system to generate QA pairs, but also deal with exception. Please see the line 46 - 86 for more detail.
+- The first character of input sentence should be uppercase
+- We not only usualize QG system to generate QA pairs, but also deal with exception. Please see the line 46 - 86 for more detail.
 
 
 ## Reference
